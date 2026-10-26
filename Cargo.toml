@@ -1,0 +1,17 @@
+[package]
+name = "sigmaos-runtime"
+version = "0.1.0"
+edition = "2021"
+authors = ["SigmaOS Project"]
+description = "Runtime environment"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/AaryanSinghChauhan09/SigmaOS-runtime"
+readme = "README.md"
+keywords = ["runtime", "execution", "environment"]
+categories = ["os"]
+
+[dependencies]
+sigmaos-kernel = { version = "0.1", path = "../SigmaOS-kernel" }
+
+[profile.release]
+opt-level = 3
