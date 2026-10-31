@@ -575,6 +575,11 @@ impl ProcessManager {
         }
     }
 
+    /// Attempt to replace a process image.
+    ///
+    /// Binary loading and execution are not implemented by this process
+    /// manager. This returns `false` even when the process has permission,
+    /// rather than reporting success without executing anything.
     pub unsafe fn exec_process(&mut self, pid: ProcessID, _binary: &[u8]) -> bool {
         if pid >= 256 {
             return false;
@@ -586,9 +591,7 @@ impl ProcessManager {
                 return false;
             }
 
-            // In a real implementation, this would load and execute the binary
-            // For now, return true
-            true
+            false
         } else {
             false
         }
@@ -704,6 +707,8 @@ pub unsafe fn fork_process() -> Option<ProcessID> {
 }
 
 /// Exec process
+/// Attempt process image replacement. Returns `false` while the runtime has
+/// no executable loader, including for an otherwise permitted process.
 pub unsafe fn exec_process(binary: &[u8]) -> bool {
     if let Some(ref mut manager) = GLOBAL_PROCESS_MANAGER {
         let current_pid = manager.get_current_process();
