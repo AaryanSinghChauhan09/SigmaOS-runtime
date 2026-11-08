@@ -1,17 +1,10 @@
 [package]
-name = "sigmaos-runtime"
+name = "sigmaos_runtime"
 version = "0.1.0"
 edition = "2021"
-authors = ["SigmaOS Project"]
-description = "Runtime environment"
-license = "GPL-3.0-or-later"
-repository = "https://github.com/AaryanSinghChauhan09/SigmaOS-runtime"
-readme = "README.md"
-keywords = ["runtime", "execution", "environment"]
-categories = ["os"]
+license = "MIT"
+description = "SigmaOS runtime component inspired by Linux Mint / Omarchy / Arch Linux."
 
-[dependencies]
-sigmaos-kernel = { version = "0.1", path = "../SigmaOS-kernel" }
-
-[profile.release]
-opt-level = 3
+[lib]
+name = "sigmaos_runtime"
+path = "src/lib.rs"
